@@ -2,9 +2,8 @@
   "name": "db-module-ii",
   "version": "0.0.1",
   "description": "Querying an SQLite database in Node.js",
-  "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "eslint && mocha"
   },
   "repository": {
     "type": "git",
@@ -30,6 +29,8 @@
   },
   "devDependencies": {
     "chai": "3.5.0",
+    "eslint": "3.17.0",
+    "eslint-config-airbnb": "^14.1.0",
     "mocha": "3.2.0",
     "supertest": "3.0.0"
   }

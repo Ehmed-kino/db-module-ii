@@ -2,4 +2,4 @@
 
 ## TODO
 
-[ ] Explain SQL injection
+- [ ] Explain SQL injection

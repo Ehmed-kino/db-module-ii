@@ -1,9 +1,0 @@
-BEGIN TRANSACTION;
-CREATE TABLE ContactUserOrganisation (UserId INTEGER, OrganisationId INTEGER);
-CREATE TABLE Organisation (ContactUserOrganisationId INTEGER, Name VARCHAR(255), Address TEXT, Borough VARCHAR(255), Telephone VARCHAR(15), Id INTEGER PRIMARY KEY, OrganisationServicesId INTEGER);
-CREATE TABLE OrganisationService (OrganisationId INTEGER, ServiceId INTEGER);
-CREATE TABLE Role (Id INTEGER, Name VARCHAR(255));
-CREATE TABLE Service (Id INTEGER PRIMARY KEY, Name VARCHAR(255));
-CREATE TABLE User (Id INTEGER PRIMARY KEY, Name VARCHAR(255), Email TEXT, UserRoleId INTEGER);
-CREATE TABLE foo (bar TEXT);
-COMMIT;

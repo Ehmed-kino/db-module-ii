@@ -25,6 +25,7 @@
   "homepage": "https://github.com/code-your-future/db-module-ii#readme",
   "dependencies": {
     "express": "4.15.0",
+    "sql-injection": "0.0.5",
     "sqlite": "2.3.0"
   },
   "devDependencies": {

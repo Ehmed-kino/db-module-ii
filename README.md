@@ -1,5 +1,3 @@
-# DB II
+# Database Module Part II
 
-## TODO
-
-- [ ] Explain SQL injection
+In this lesson, we'll write a Node.js HTTP API that queries a relational data and

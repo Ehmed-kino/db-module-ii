@@ -3,9 +3,15 @@
 const { expect } = require('chai');
 const request = require('supertest');
 const fs = require('fs');
-const server = require('../src/server');
+const initialiseApp = require('../src/server');
+
+let server;
 
 describe('The organisations API', function () {
+    before(function () {
+        return initialiseApp.then(app => server = app);
+    });
+
     beforeEach(function () {
         /* create copy of database for each test
          * for the sake of test independence */

@@ -1,5 +1,7 @@
 'use strict';
 
+const db = require('sqlite');
+
 module.exports = {
     get(req, res) {
         res.status(404).json({ error: 'Not found' });

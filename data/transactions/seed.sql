@@ -14,7 +14,7 @@ VALUES
 
 INSERT INTO User(Id, Name, Email, UserRoleId)
 VALUES
-    (1, 'Joe Bloggs', 'joe@bloggs.com', 1),
+    (1, 'Joe Bloggs', 'joe@bloggs.com', 2),
     (2, 'John Doe', 'johndoe@email.com', 2),
     (3, 'Ola Nordmann', 'ola@email.com', 2),
     (4, 'Greg Fred', 'greg@fred.com', 2);

@@ -3,7 +3,7 @@
 const { expect } = require('chai');
 const request = require('supertest');
 const fs = require('fs');
-const server = require('../server');
+const server = require('../src/server');
 
 describe('The organisations API', function () {
     beforeEach(function () {
@@ -22,7 +22,7 @@ describe('The organisations API', function () {
     });
 
     after(function () {
-        fs.unlink('test/database.tmp.sqlite');
+        fs.unlinkSync('test/database.tmp.sqlite');
     });
 
     describe('HTTP GET to /organisations', function () {
@@ -30,6 +30,7 @@ describe('The organisations API', function () {
             return request(server)
                 .get('/organisations')
                 .expect(200)
+                .expect('Content-Type', /json/)
                 .then(response => {
                     expect(response.body.length).to.equal(3);
 
@@ -122,6 +123,7 @@ describe('The organisations API', function () {
                 .field('services', '3,4')
                 .field('contacts', '1,2')
                 .expect(200)
+                .expect('Content-Type', /json/)
                 .then(() => request.get('/organisations'))
                 .then(response => {
                     expect(response.body.length).to.equal(4);
@@ -164,6 +166,7 @@ describe('The organisations API', function () {
                 .field('postCode', 'M13 9HU')
                 .field('telephone', '0344 515 3000')
                 .expect(200)
+                .expect('Content-Type', /json/)
                 .then(() => request.get('/organisations'))
                 .then(response => {
                     expect(response.body.length).to.equal(3);
@@ -201,6 +204,7 @@ describe('The organisations API', function () {
         it('should delete an organisation', function () {
             return request(server)['delete']('/organisations/1')
                 .expect(200)
+                .expect('Content-Type', /json/)
                 .then(() => request.get('/organisations'))
                 .then(response => {
                     expect(response.body.length).to.equal(2);

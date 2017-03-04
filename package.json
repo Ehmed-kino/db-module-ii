@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Querying an SQLite database in Node.js",
   "scripts": {
-    "test": "eslint && mocha"
+    "test": "eslint {src,test} && mocha test/e2e-test.js"
   },
   "repository": {
     "type": "git",

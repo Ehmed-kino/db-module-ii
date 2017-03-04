@@ -1,0 +1,35 @@
+{
+  "name": "db-module-ii",
+  "version": "0.0.1",
+  "description": "Querying an SQLite database in Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/code-your-future/db-module-ii.git"
+  },
+  "keywords": [
+    "database",
+    "sql",
+    "sqlite",
+    "rdbms",
+    "relational"
+  ],
+  "author": "James Wright <james@jamesswright.co.uk>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/code-your-future/db-module-ii/issues"
+  },
+  "homepage": "https://github.com/code-your-future/db-module-ii#readme",
+  "dependencies": {
+    "express": "4.15.0",
+    "sqlite": "2.3.0"
+  },
+  "devDependencies": {
+    "chai": "3.5.0",
+    "mocha": "3.2.0",
+    "supertest": "3.0.0"
+  }
+}

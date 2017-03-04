@@ -12,7 +12,7 @@ This is an SQLite database that is based upon the homework from the first databa
 
 ## The Server
 
-This repository contains an [Express app]*https://github.com/Code-Your-Future/db-module-ii/blob/master/src/server.js) that exposes a [series of routes](https://github.com/Code-Your-Future/db-module-ii/blob/master/src/routes/organisations.js) for interacting with the database.
+This repository contains an [Express app](https://github.com/Code-Your-Future/db-module-ii/blob/master/src/server.js) that exposes a [series of routes](https://github.com/Code-Your-Future/db-module-ii/blob/master/src/routes/organisations.js) for interacting with the database.
 
 There are some [end-to-end tests](https://github.com/Code-Your-Future/db-module-ii/blob/master/test/e2e-test.js) that will hit the endpoints exposes by the server and ensure that the data is updated as expected.
 

@@ -40,7 +40,7 @@ CREATE TABLE OrganisationService (
     ServiceId INTEGER,
     PRIMARY KEY(OrganisationId, ServiceId),
     FOREIGN KEY(OrganisationId) REFERENCES Organisation(Id),
-    FOREIGN KEY(ServiceId) REFERENCES ServiceId(Id)
+    FOREIGN KEY(ServiceId) REFERENCES Service(Id)
 );
 
 COMMIT;

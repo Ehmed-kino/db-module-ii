@@ -1,17 +1,17 @@
 BEGIN TRANSACTION;
 
 CREATE TABLE Service (
-    Id INTEGER PRIMARY KEY,
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
     Name VARCHAR(255)
 );
 
 CREATE TABLE Role (
-    Id INTEGER,
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
     Name VARCHAR(255)
 );
 
 CREATE TABLE User (
-    Id INTEGER PRIMARY KEY,
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
     Name VARCHAR(255),
     Email TEXT,
     UserRoleId INTEGER,
@@ -19,13 +19,12 @@ CREATE TABLE User (
 );
 
 CREATE TABLE Organisation (
-    ContactUserOrganisationId INTEGER,
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
     Name VARCHAR(255),
     Address TEXT,
-    Borough VARCHAR(255),
-    Telephone VARCHAR(15),
-    Id INTEGER PRIMARY KEY,
-    OrganisationServicesId INTEGER
+    City VARCHAR(255),
+    PostCode VARCHAR(8),
+    Telephone VARCHAR(15)
 );
 
 CREATE TABLE ContactUserOrganisation (

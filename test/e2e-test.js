@@ -109,4 +109,104 @@ describe('The organisations API', function () {
                 });
         });
     });
+
+    describe('HTTP POST to /organisations', function () {
+        it('should create a new organisation', function () {
+            return request(server)
+                .post('/organisations')
+                .field('name', 'Shelter')
+                .field('address', '88 Old Street')
+                .field('city', 'London')
+                .field('postCode', 'EC1V 9HU')
+                .field('telephone', '0344 515 2000')
+                .field('services', '3,4')
+                .field('contacts', '1,2')
+                .expect(200)
+                .then(() => request.get('/organisations'))
+                .then(response => {
+                    expect(response.body.length).to.equal(4);
+
+                    expect(response.body[3]).to.deep.equal({
+                        id: 4,
+                        name: 'Shelter',
+                        address: '88 Old Street',
+                        city: 'London',
+                        postCode: 'EC1V 9HU',
+                        telephone: '0344 515 2000',
+
+                        services: [
+                            'Housing',
+                            'Employment'
+                        ],
+
+                        contacts: [
+                            {
+                                name: 'Joe Bloggs',
+                                email: 'joe@bloggs.com'
+                            },
+
+                            {
+                                name: 'John Doe',
+                                email: 'johndoe@email.com'
+                            }
+                        ]
+                    });
+                });
+        });
+    });
+
+    describe('HTTP PUT to /organisations', function () {
+        it('should update an organisation`s address, telephone, and postcode', function () {
+            return request(server)
+                .put('/organisations/1')
+                .field('address', '90 Old Road')
+                .field('city', 'Manchester')
+                .field('postCode', 'M13 9HU')
+                .field('telephone', '0344 515 3000')
+                .expect(200)
+                .then(() => request.get('/organisations'))
+                .then(response => {
+                    expect(response.body.length).to.equal(3);
+
+                    expect(response.body[0]).to.deep.equal({
+                        id: 1,
+                        name: 'Amnesty International',
+                        address: '90 Old Road',
+                        city: 'Manchester',
+                        postCode: 'M13 9HU',
+                        telephone: '0344 515 3000',
+
+                        services: [
+                            'Housing',
+                            'Employment'
+                        ],
+
+                        contacts: [
+                            {
+                                name: 'Joe Bloggs',
+                                email: 'joe@bloggs.com'
+                            },
+
+                            {
+                                name: 'John Doe',
+                                email: 'johndoe@email.com'
+                            }
+                        ]
+                    });
+                });
+        });
+    });
+
+    describe('HTTP DELETE to /organisations', function () {
+        it('should delete an organisation', function () {
+            return request(server)['delete']('/organisations/1')
+                .expect(200)
+                .then(() => request.get('/organisations'))
+                .then(response => {
+                    expect(response.body.length).to.equal(2);
+
+                    expect(response.body[0].name).to.equal('Refugee Council');
+                });
+        });
+    });
 });

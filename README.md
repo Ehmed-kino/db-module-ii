@@ -30,6 +30,14 @@ We're using the [`node-sqlite`](https://github.com/kriasoft/node-sqlite) module 
 
 Think carefully about the queries you should make and the joins that may be required.
 
+### Local development
+
+Make sure you install all of the project dependencies with `npm i` before you do anything else. Then you can run these scripts:
+
+* `npm test` - runs the end-to-end tests
+* `npm start` - runs the server via nodemon, restarting on changes to the `src` directory
+
+Note that this project requires **Node.js 6 or above** due to the user of ES6.
 
 ### Stretch Goals
 

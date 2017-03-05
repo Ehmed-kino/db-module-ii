@@ -9,6 +9,9 @@ This is an SQLite database that is based upon the homework from the first databa
 
 ![ERD](http://i.imgur.com/e8No8Xt.png)
 
+Note that **all of the IDs are auto-incrementing** - this means that when you add a new record to a table, SQLite will manage the primary key for you; there is no need to explicitly set this.
+
+Perhaps the simplest means of understanding our database is to look at the [SQL query](https://github.com/Code-Your-Future/db-module-ii/blob/master/data/transactions/create-tables.sql) used to create our tables.
 
 ## The Server
 
@@ -21,7 +24,9 @@ There are some [end-to-end tests](https://github.com/Code-Your-Future/db-module-
 
 Implement the routes so that the end-to-end tests pass! :)
 
-The server already opens the database, so you need to query it; you can do this directly in the route file. We're using the [`node-sqlite`](https://github.com/kriasoft/node-sqlite) module to connect to and manipulate the database.
+The server already opens the database, so you just need to query it; you can do this directly in the route file via the imported `db` object.
+
+We're using the [`node-sqlite`](https://github.com/kriasoft/node-sqlite) module to connect to and manipulate the database. It follows the same [API as node-sqlite3](https://github.com/mapbox/node-sqlite3/wiki/API), only it returns `Promise`s in lieu of using callbacks.
 
 Think carefully about the queries you should make and the joins that may be required.
 
@@ -31,8 +36,8 @@ Think carefully about the queries you should make and the joins that may be requ
 * Add routes to get, add, update, and delete users. Please write end-to-end tests for these following the same format as the tests for `/organisations`.
 
 * [SQL injection](https://en.wikipedia.org/wiki/SQL_injection) is a vulnerability via which malicious SQL code can be executed by an application
-  * e.g. requesting `HTTP DELETE` to `http://localhost:8000/organisations/1 AND ID=2` will result in two organisations being deleted
-  * Figure out how this can be prohibited (hint: check the `dependencies` in `package.json` ;)
+  * e.g. requesting `HTTP DELETE` to `http://localhost:8000/organisations/1 OR Id=2` will result in two organisations being deleted!
+  * Research how this can be prohibited, and implement this resolution in the project
 
 
 ## Homework

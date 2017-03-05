@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Querying an SQLite database in Node.js",
   "scripts": {
-    "start": "node src/server",
+    "start": "nodemon --watch src src/server.js",
     "test": "eslint {src,test} && mocha test/e2e-test.js"
   },
   "repository": {
@@ -31,6 +31,7 @@
     "chai": "3.5.0",
     "eslint": "3.17.0",
     "mocha": "3.2.0",
+    "nodemon": "1.11.0",
     "supertest": "3.0.0"
   }
 }

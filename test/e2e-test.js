@@ -40,79 +40,58 @@ describe('The organisations API', function () {
                 .then(response => {
                     expect(response.body.length).to.equal(3);
 
-                    expect(response.body).to.deep.equal([
-                        {
-                            id: 1,
-                            name: 'Amnesty International',
-                            address: '17-25 New Inn Yard',
-                            city: 'London',
-                            postCode: 'EC2A 3EA',
-                            telephone: '020 7033 1500',
+                    expect(response.body[0].Id).to.equal(1);
+                    expect(response.body[0].Name).to.equal('Amnesty International');
+                    expect(response.body[0].Address).to.equal('17-25 New Inn Yard');
+                    expect(response.body[0].City).to.equal('London');
+                    expect(response.body[0].PostCode).to.equal('EC2A 3EA');
+                    expect(response.body[0].Telephone).to.equal('020 7033 1500');
 
-                            services: [
-                                'Immigration',
-                                'Discrimination'
-                            ],
+                    expect(response.body[0].Services.length).to.equal(2);
+                    expect(response.body[0].Services[0].Name).to.equal('Immigration');
+                    expect(response.body[0].Services[1].Name).to.equal('Discrimination');
 
-                            contacts: [
-                                {
-                                    name: 'Joe Bloggs',
-                                    email: 'joe@bloggs.com'
-                                },
+                    expect(response.body[0].Contacts.length).to.equal(2);
+                    expect(response.body[0].Contacts[0].Name).to.equal('Joe Bloggs');
+                    expect(response.body[0].Contacts[0].Email).to.equal('joe@bloggs.com');
+                    expect(response.body[0].Contacts[1].Name).to.equal('John Doe');
+                    expect(response.body[0].Contacts[1].Email).to.equal('johndoe@email.com');
 
-                                {
-                                    name: 'John Doe',
-                                    email: 'johndoe@email.com'
-                                }
-                            ]
-                        },
+                    expect(response.body[1].Id).to.equal(2);
+                    expect(response.body[1].Name).to.equal('Refugee Council');
+                    expect(response.body[1].Address).to.equal('PO Box 68614');
 
-                        {
-                            id: 2,
-                            name: 'Refugee Council',
-                            address: 'PO Box 68614',
-                            city: 'London',
-                            postCode: 'E15 9DQ',
-                            telephone: '020 7346 6700',
+                    expect(response.body[1].City).to.equal('London');
+                    expect(response.body[1].PostCode).to.equal('E15 9DQ');
+                    expect(response.body[1].Telephone).to.equal('020 7346 6700');
 
-                            services: [
-                                'Immigration',
-                                'Discrimination',
-                                'Housing',
-                                'Employment'
-                            ],
+                    expect(response.body[1].Services.length).to.equal(4);
+                    expect(response.body[1].Services[0].Name).to.equal('Immigration');
+                    expect(response.body[1].Services[1].Name).to.equal('Discrimination');
+                    expect(response.body[1].Services[2].Name).to.equal('Housing');
+                    expect(response.body[1].Services[3].Name).to.equal('Employment');
 
-                            contacts: [
-                                {
-                                    name: 'Ola Nordmann',
-                                    email: 'ola@email.com'
-                                }
-                            ]
-                        },
+                    expect(response.body[1].Contacts.length).to.equal(1);
+                    expect(response.body[1].Contacts[0].Name).to.equal('Ola Nordmann');
+                    expect(response.body[1].Contacts[0].Email).to.equal('ola@email.com');
 
-                        {
-                            id: 3,
-                            name: 'Refugee Action',
-                            address: '11 Belgrave Road',
-                            city: 'London',
-                            postCode: 'SW1V 1RB',
-                            telephone: '0207 952 1511',
+                    expect(response.body[2].Id).to.equal(3);
+                    expect(response.body[2].Name).to.equal('Refugee Action');
+                    expect(response.body[2].Address).to.equal('11 Belgrave Road');
 
-                            services: [
-                                'Immigration',
-                                'Discrimination',
-                                'Housing',
-                                'Employment'
-                            ],
+                    expect(response.body[2].City).to.equal('London');
+                    expect(response.body[2].PostCode).to.equal('SW1V 1RB');
+                    expect(response.body[2].Telephone).to.equal('0207 952 1511');
 
-                            contacts: [
-                                {
-                                    name: 'Greg Fred',
-                                    email: 'greg@fred.com'
-                                }
-                            ]
-                        }
-                    ]);
+                    expect(response.body[2].Services.length).to.equal(4);
+                    expect(response.body[2].Services[0].Name).to.equal('Immigration');
+                    expect(response.body[2].Services[1].Name).to.equal('Discrimination');
+                    expect(response.body[2].Services[2].Name).to.equal('Housing');
+                    expect(response.body[2].Services[3].Name).to.equal('Employment');
+
+                    expect(response.body[2].Contacts.length).to.equal(1);
+                    expect(response.body[2].Contacts[0].Name).to.equal('Greg Fred');
+                    expect(response.body[2].Contacts[0].Email).to.equal('greg@fred.com');
                 });
         });
     });
@@ -121,44 +100,23 @@ describe('The organisations API', function () {
         it('should create a new organisation', function () {
             return request(server)
                 .post('/organisations')
-                .field('name', 'Shelter')
-                .field('address', '88 Old Street')
-                .field('city', 'London')
-                .field('postCode', 'EC1V 9HU')
-                .field('telephone', '0344 515 2000')
-                .field('services', '3,4')
-                .field('contacts', '1,2')
+                .field('Name', 'Shelter')
+                .field('Address', '88 Old Street')
+                .field('City', 'London')
+                .field('PostCode', 'EC1V 9HU')
+                .field('Telephone', '0344 515 2000')
                 .expect(200)
                 .expect('Content-Type', /json/)
                 .then(() => request.get('/organisations'))
                 .then(response => {
                     expect(response.body.length).to.equal(4);
 
-                    expect(response.body[3]).to.deep.equal({
-                        id: 4,
-                        name: 'Shelter',
-                        address: '88 Old Street',
-                        city: 'London',
-                        postCode: 'EC1V 9HU',
-                        telephone: '0344 515 2000',
-
-                        services: [
-                            'Housing',
-                            'Employment'
-                        ],
-
-                        contacts: [
-                            {
-                                name: 'Joe Bloggs',
-                                email: 'joe@bloggs.com'
-                            },
-
-                            {
-                                name: 'John Doe',
-                                email: 'johndoe@email.com'
-                            }
-                        ]
-                    });
+                    expect(response.body[3].Id).to.equal(4);
+                    expect(response.body[3].Name).to.equal('Shelter');
+                    expect(response.body[3].Address).to.equal('88 Old Street');
+                    expect(response.body[3].City).to.equal('London');
+                    expect(response.body[3].PostCode).to.equal('EC1V 9HU');
+                    expect(response.body[3].Telephone).to.equal('0344 515 2000');
                 });
         });
     });
@@ -167,41 +125,22 @@ describe('The organisations API', function () {
         it('should update an organisation`s address, telephone, and postcode', function () {
             return request(server)
                 .put('/organisations/1')
-                .field('address', '90 Old Road')
-                .field('city', 'Manchester')
-                .field('postCode', 'M13 9HU')
-                .field('telephone', '0344 515 3000')
+                .field('Address', '90 Old Road')
+                .field('City', 'Manchester')
+                .field('PostCode', 'M13 9HU')
+                .field('Telephone', '0344 515 3000')
                 .expect(200)
                 .expect('Content-Type', /json/)
                 .then(() => request.get('/organisations'))
                 .then(response => {
                     expect(response.body.length).to.equal(3);
 
-                    expect(response.body[0]).to.deep.equal({
-                        id: 1,
-                        name: 'Amnesty International',
-                        address: '90 Old Road',
-                        city: 'Manchester',
-                        postCode: 'M13 9HU',
-                        telephone: '0344 515 3000',
-
-                        services: [
-                            'Housing',
-                            'Employment'
-                        ],
-
-                        contacts: [
-                            {
-                                name: 'Joe Bloggs',
-                                email: 'joe@bloggs.com'
-                            },
-
-                            {
-                                name: 'John Doe',
-                                email: 'johndoe@email.com'
-                            }
-                        ]
-                    });
+                    expect(response.body[0].Id).to.equal(1);
+                    expect(response.body[0].Name).to.equal('Amnesty International');
+                    expect(response.body[0].Address).to.equal('90 Old Road');
+                    expect(response.body[0].City).to.equal('Manchester');
+                    expect(response.body[0].PostCode).to.equal('M13 9HU');
+                    expect(response.body[0].Telephone).to.equal('0344 515 3000');
                 });
         });
     });
@@ -215,7 +154,7 @@ describe('The organisations API', function () {
                 .then(response => {
                     expect(response.body.length).to.equal(2);
 
-                    expect(response.body[0].name).to.equal('Refugee Council');
+                    expect(response.body[0].Name).to.equal('Refugee Council');
                 });
         });
     });
